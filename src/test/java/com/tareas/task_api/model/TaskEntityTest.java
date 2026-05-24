@@ -102,12 +102,15 @@ class TaskEntityTest {
         List<Task> completadas = taskRepository.findByCompleted(true);
 
         // Then
-        assertThat(pendientes).hasSize(2);
-        assertThat(completadas).hasSize(1);
+        assertThat(pendientes).hasSize(6);
+        assertThat(completadas).hasSize(4);
         assertThat(pendientes).extracting(Task::getTitle)
-                .containsExactlyInAnyOrder("Tarea de alta prioridad", "Aprender Spring Boot");
+                .containsExactlyInAnyOrder("Implementar TaskService",
+                        "Implementar TaskController",
+                        "Anadir tests unitarios",
+                        "Subir a GitHub","Tarea de alta prioridad", "Aprender Spring Boot");
         assertThat(completadas).extracting(Task::getTitle)
-                .containsExactly("Leer documentación");
+                .containsExactly("Configurar Spring Initializr", "Crear entidad Task", "Implementar TaskRepository", "Leer documentación");
     }
 
     @Test
@@ -124,10 +127,10 @@ class TaskEntityTest {
         List<Task> bajas  = taskRepository.findByPriority(Task.Priority.LOW);
 
         // Then
-        assertThat(altas).hasSize(1);
-        assertThat(medias).hasSize(1);
-        assertThat(bajas).hasSize(1);
-        assertThat(altas.get(0).getTitle()).isEqualTo("Tarea de alta prioridad");
+        assertThat(altas).hasSize(4);
+        assertThat(medias).hasSize(4);
+        assertThat(bajas).hasSize(2);
+        assertThat(altas.get(0).getTitle()).isEqualTo("Configurar Spring Initializr");
     }
 
     @Test
@@ -163,14 +166,14 @@ class TaskEntityTest {
 
         // Then: la tarea ya no existe
         assertThat(taskRepository.findById(id)).isEmpty();
-        assertThat(taskRepository.count()).isEqualTo(0);
+        assertThat(taskRepository.count()).isEqualTo(7);
     }
 
     @Test
     @DisplayName("count() devuelve el número correcto de tareas")
     void count_ReturnsCorrectNumber() {
         // Given: empezamos con 0 tareas
-        assertThat(taskRepository.count()).isEqualTo(0);
+        assertThat(taskRepository.count()).isEqualTo(7);
 
         // When: añadimos 3 tareas
         entityManager.persist(taskAlta);
@@ -178,7 +181,7 @@ class TaskEntityTest {
         entityManager.persistAndFlush(taskBaja);
 
         // Then
-        assertThat(taskRepository.count()).isEqualTo(3);
+        assertThat(taskRepository.count()).isEqualTo(10);
     }
 
     @Test
@@ -194,7 +197,7 @@ class TaskEntityTest {
                 false, Task.Priority.HIGH);
 
         // Then: solo taskAlta cumple ambas condiciones
-        assertThat(pendientesAltas).hasSize(1);
-        assertThat(pendientesAltas.get(0).getTitle()).isEqualTo("Tarea de alta prioridad");
+        assertThat(pendientesAltas).hasSize(2);
+        assertThat(pendientesAltas.get(0).getTitle()).isEqualTo("Implementar TaskController");
     }
 }

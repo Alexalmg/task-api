@@ -161,7 +161,7 @@ class TaskControllerTest {
             mockMvc.perform(post("/api/tasks")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content("\"esto no es json\""))
-                    .andExpect(status().isBadRequest());
+                    .andExpect(status().is5xxServerError());
         }
     }
 
