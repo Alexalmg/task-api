@@ -1,0 +1,8 @@
+INSERT INTO tasks (title, description, completed, priority, created_at, updated_at) VALUES
+                                                                                        ('Configurar Spring Initializr', 'Crear el proyecto base con las dependencias correctas', true, 'HIGH', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                                                                        ('Crear entidad Task', 'Modelar la entidad con anotaciones JPA y enum Priority', true, 'HIGH', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                                                                        ('Implementar TaskRepository', 'Repositorio con consultas derivadas y JPQL', true, 'MEDIUM', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                                                                        ('Implementar TaskService', 'Logica de negocio con @Transactional y logging', false, 'MEDIUM', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                                                                        ('Implementar TaskController', 'CRUD completo con codigos HTTP correctos', false, 'HIGH', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                                                                        ('Anadir tests unitarios', 'Tests de servicio con JUnit 5 y Mockito', false, 'MEDIUM', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                                                                        ('Subir a GitHub', 'Primer commit y configurar ramas', false, 'LOW', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
